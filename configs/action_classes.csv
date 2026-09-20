@@ -1,0 +1,7 @@
+action_id,action_label,type,video_file,description
+A001,bend_return,dynamic,bend_return.mp4,bend forward and return upright
+A002,leg_raise_lower,dynamic,leg_raise_lower.mp4,raise one leg and lower it
+A003,walk_turn_walk,dynamic,walk_turn_walk.mp4,walk turn and walk again
+A004,drink_return,dynamic,drink_return.mp4,drink and return to front
+A005,sit_stand,dynamic,sit_stand.mp4,sit on a chair and stand again
+A006,wave,dynamic,wave.mp4,raise one hand and wave

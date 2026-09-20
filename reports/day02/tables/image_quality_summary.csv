@@ -1,0 +1,7 @@
+﻿image,people,main_box_conf,bbox_area_ratio,mean_keypoint_conf,low_keypoint_count,lowest_keypoint,lowest_keypoint_conf,keypoint_threshold
+arms_up.jpg,1,0.838,0.6752,0.9599,0,right_ear,0.6541,0.5
+distance_far.jpg,1,0.926,0.1489,0.971,0,right_ear,0.7383,0.5
+front.jpg,1,0.9228,0.2996,0.9754,0,right_ear,0.7428,0.5
+occlusion.jpg,1,0.9181,0.2649,0.9533,1,right_ear,0.4797,0.5
+partial_body.jpg,1,0.942,0.3384,0.9073,2,left_ankle,0.4907,0.5
+side.jpg,1,0.8373,0.1993,0.7541,4,right_ear,0.0278,0.5

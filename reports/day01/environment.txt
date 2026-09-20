@@ -1,0 +1,9 @@
+Python: 3.12.3
+Platform: Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39
+OpenCV: 5.0.0
+PyTorch: 2.14.0+cu130
+Ultralytics: 8.4.138
+CUDA available: True
+PyTorch CUDA: 13.0
+GPU: NVIDIA GeForce RTX 4080 SUPER
+Selected device: 0
