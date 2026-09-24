@@ -1,0 +1,7 @@
+﻿clip_id,subject,true_label,pred_label,confidence,correct
+S03_A001_T01,S03,bend_return,bend_return,0.25,True
+S03_A002_T01,S03,leg_raise_lower,leg_raise_lower,0.36666666666666664,True
+S03_A003_T01,S03,walk_turn_walk,walk_turn_walk,0.25,True
+S03_A004_T01,S03,drink_return,drink_return,0.3233333333333333,True
+S03_A005_T01,S03,sit_stand,sit_stand,0.23,True
+S03_A006_T01,S03,wave,wave,0.3333333333333333,True

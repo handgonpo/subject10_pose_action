@@ -1,0 +1,4 @@
+﻿video,role,fps,frames,width,height,duration_sec,use_for_tracking,use_as_rf_ground_truth
+01_sbu_shaking_hands.mp4,BASIC_TRACKING,15.306,30,640,480,1.96,1,0
+02_sbu_hugging.mp4,OCCLUSION_TRACKING,15.278,33,640,480,2.16,1,0
+03_sbu_kicking_challenge.mp4,FAST_INTERACTION_TRACKING,15.517,18,640,480,1.16,1,0

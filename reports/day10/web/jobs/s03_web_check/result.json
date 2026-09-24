@@ -1,0 +1,26 @@
+{
+  "job_id": "s03_web_check",
+  "created_at": "2026-09-24T15:01:43+09:00",
+  "source_file": "S03_A006_T01.mp4",
+  "expected_action": "wave",
+  "expected_action_description": "한 손을 들어 흔든다",
+  "detected_action": "wave",
+  "detected_action_description": "한 손을 들어 흔든다",
+  "latest_confidence": 0.2933,
+  "final_match": true,
+  "metrics": {
+    "prediction_updates": 6,
+    "unknown_ratio": 0.0,
+    "stable_match_ratio": 0.6667,
+    "mean_confidence": 0.3489,
+    "mean_processing_fps": 76.089
+  },
+  "runtime": {
+    "window_seconds": 3.0,
+    "confidence_threshold": 0.2,
+    "stabilization_buffer": 5
+  },
+  "runtime_csv": "reports/day10/web/runtime/S03_A006_T01_w3_c0.2_s5.csv",
+  "processed_video": "reports/day10/web/runtime/S03_A006_T01_w3_c0.2_s5.mp4",
+  "preview_image": "reports/day10/web/jobs/s03_web_check/preview.jpg"
+}

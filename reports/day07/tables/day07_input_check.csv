@@ -1,0 +1,7 @@
+﻿action_id,action_label,video_path,exists,fps,frames,duration_sec,required_warmup_sec,runtime_ready
+A001,bend_return,data/day05/videos/S02/S02_A001_T01.mp4,1,25.0,154,6.16,4.0,1
+A002,leg_raise_lower,data/day05/videos/S02/S02_A002_T01.mp4,1,25.0,116,4.64,4.0,1
+A003,walk_turn_walk,data/day05/videos/S02/S02_A003_T01.mp4,1,25.0,241,9.64,4.0,1
+A004,drink_return,data/day05/videos/S02/S02_A004_T01.mp4,1,25.0,154,6.16,4.0,1
+A005,sit_stand,data/day05/videos/S02/S02_A005_T01.mp4,1,25.0,120,4.8,4.0,1
+A006,wave,data/day05/videos/S02/S02_A006_T01.mp4,1,25.0,94,3.76,4.0,0

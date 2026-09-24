@@ -1,0 +1,5 @@
+{
+  "jitter_ratio": 0.02,
+  "jitter_ratios_compare": [0.005, 0.02, 0.05, 0.10],
+  "random_state": 42
+}

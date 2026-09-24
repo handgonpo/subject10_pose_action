@@ -1,0 +1,7 @@
+﻿action_label,windows,mean_error,median_error,max_error,anomaly_candidate_ratio
+walk_turn_walk,43,3869.8074,783.9076,24947.271,1.0
+leg_raise_lower,18,94.86587,68.37961,219.61209,1.0
+sit_stand,19,41.973915,41.17148,78.832535,1.0
+bend_return,25,35.17555,33.912624,66.62094,1.0
+drink_return,25,10.091378,9.702555,15.831467,0.88
+wave,13,4.8597517,4.735241,5.856375,0.07692307692307693

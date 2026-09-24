@@ -1,0 +1,14 @@
+{
+  "normal_action_label": "wave",
+  "window_valid_frames": 30,
+  "window_stride": 5,
+  "hidden_dim": 256,
+  "latent_dim": 16,
+  "epochs": 150,
+  "batch_size": 16,
+  "learning_rate": 0.001,
+  "beta": 0.001,
+  "threshold_percentile": 95,
+  "thresholds_compare": [90, 95, 99],
+  "random_state": 42
+}

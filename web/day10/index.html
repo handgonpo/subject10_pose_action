@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Action Recognition Video Test
+  </title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6f8;
+      color: #1f2937;
+      font-family:
+        Arial,
+        "Noto Sans KR",
+        sans-serif;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .sub {
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+
+    .notice {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 24px;
+      box-shadow:
+        0 2px 10px
+        rgba(0, 0, 0, 0.06);
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(240px, 1fr)
+        );
+      gap: 10px;
+    }
+
+    .action-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .action-card strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(260px, 1fr)
+        );
+      gap: 16px;
+      align-items: end;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    select,
+    input,
+    button {
+      width: 100%;
+      min-height: 44px;
+      font-size: 15px;
+    }
+
+    select,
+    input {
+      padding: 8px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      background: #111827;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: wait;
+    }
+
+    .status {
+      margin-top: 14px;
+      font-weight: 700;
+    }
+
+    .video-box {
+      margin-top: 20px;
+    }
+
+    .video-box video {
+      display: block;
+      width: 100%;
+      max-height: 560px;
+      background: #111;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+
+    .preview-column {
+      min-width: 0;
+    }
+
+    .preview-shell {
+      width: 100%;
+      min-height: 520px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0b0f14;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    #resultPreview {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+      object-position: center;
+      background: #0b0f14;
+      border-radius: 10px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1.8fr)
+        minmax(260px, 0.7fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .result-cards {
+      display: grid;
+      gap: 12px;
+    }
+
+    .result-card {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .result-label {
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 7px;
+    }
+
+    .result-value {
+      font-size: 24px;
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    .description {
+      margin-top: 5px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .match {
+      font-size: 30px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(180px, 1fr)
+        );
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 21px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (
+      max-width: 900px
+    ) {
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-shell {
+        min-height: 360px;
+      }
+
+      #resultPreview {
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="wrap">
+
+    <h1>
+      Action Recognition Video Test
+    </h1>
+
+    <div class="sub">
+      Subject 10 · Day 10
+    </div>
+
+    <div class="notice">
+      이 모델은 아래 6개 Action만 분류합니다.
+      다른 동작을 넣으면 새로운 Action 이름으로
+      인식하는 것이 아니라 6개 중 하나 또는
+      UNKNOWN으로 나타날 수 있습니다.
+    </div>
+
+    <section class="panel">
+
+      <h2>
+        인식 가능한 Action
+      </h2>
+
+      <div
+        id="actions"
+        class="action-grid"
+      >
+      </div>
+
+    </section>
+
+    <section class="panel">
+
+      <h2>
+        외부 MP4 분석
+      </h2>
+
+      <form id="analyzeForm">
+
+        <div class="form-grid">
+
+          <div>
+            <label for="expectedAction">
+              1. 영상에서 실제로 수행한 Action
+            </label>
+
+            <select
+              id="expectedAction"
+              name="expected_action"
+              required
+            >
+            </select>
+          </div>
+
+          <div>
+            <label for="videoFile">
+              2. 분석할 MP4
+            </label>
+
+            <input
+              id="videoFile"
+              type="file"
+              accept="video/mp4,.mp4"
+              required
+            >
+          </div>
+
+          <div>
+            <button
+              id="analyzeButton"
+              type="submit"
+            >
+              영상 분석
+            </button>
+          </div>
+
+        </div>
+
+      </form>
+
+      <div
+        id="status"
+        class="status"
+      >
+      </div>
+
+      <div
+        id="inputBox"
+        class="video-box"
+        hidden
+      >
+
+        <h3>
+          업로드할 원본 영상
+        </h3>
+
+        <video
+          id="inputVideo"
+          controls
+          muted
+        >
+        </video>
+
+      </div>
+
+    </section>
+
+    <section
+      id="resultSection"
+      class="panel"
+      hidden
+    >
+
+      <h2>
+        Action Recognition Result
+      </h2>
+
+      <div class="result-grid">
+
+        <div class="preview-column">
+
+          <h3>
+            Pose Skeleton 대표 Frame
+          </h3>
+
+          <div class="preview-shell">
+            <img
+              id="resultPreview"
+              alt="Pose skeleton result"
+            >
+          </div>
+
+        </div>
+
+        <div class="result-cards">
+
+          <div class="result-card">
+            <div class="result-label">
+              Expected Action
+            </div>
+
+            <div
+              id="expectedValue"
+              class="result-value"
+            >
+              -
+            </div>
+
+            <div
+              id="expectedDescription"
+              class="description"
+            >
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-label">
+              Detected Action
+            </div>
+
+            <div
+              id="detectedValue"
+              class="result-value"
+            >
+              -
+            </div>
+
+            <div
+              id="detectedDescription"
+              class="description"
+            >
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-label">
+              Latest Confidence
+            </div>
+
+            <div
+              id="confidenceValue"
+              class="result-value"
+            >
+              -
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-label">
+              Expected와 최종 결과 비교
+            </div>
+
+            <div
+              id="matchValue"
+              class="result-value match"
+            >
+              -
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="metrics">
+
+        <div class="metric">
+          Prediction Updates
+          <strong id="updatesValue">
+            -
+          </strong>
+        </div>
+
+        <div class="metric">
+          UNKNOWN Ratio
+          <strong id="unknownValue">
+            -
+          </strong>
+        </div>
+
+        <div class="metric">
+          Stable Match Ratio
+          <strong id="stableMatchValue">
+            -
+          </strong>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const actionsBox =
+      document.getElementById(
+        "actions"
+      );
+
+    const expectedAction =
+      document.getElementById(
+        "expectedAction"
+      );
+
+    const videoFile =
+      document.getElementById(
+        "videoFile"
+      );
+
+    const inputVideo =
+      document.getElementById(
+        "inputVideo"
+      );
+
+    const inputBox =
+      document.getElementById(
+        "inputBox"
+      );
+
+    const form =
+      document.getElementById(
+        "analyzeForm"
+      );
+
+    const button =
+      document.getElementById(
+        "analyzeButton"
+      );
+
+    const status =
+      document.getElementById(
+        "status"
+      );
+
+    const resultSection =
+      document.getElementById(
+        "resultSection"
+      );
+
+
+    function percent(value) {
+      if (
+        value === null
+        || value === undefined
+      ) {
+        return "-";
+      }
+
+      return (
+        Number(value) * 100
+      ).toFixed(1) + "%";
+    }
+
+
+    async function loadActions() {
+
+      const response =
+        await fetch(
+          "/api/actions"
+        );
+
+      if (!response.ok) {
+        throw new Error(
+          "Action 목록을 읽을 수 없습니다."
+        );
+      }
+
+      const actions =
+        await response.json();
+
+      actionsBox.innerHTML = "";
+      expectedAction.innerHTML = "";
+
+      for (
+        const item
+        of actions
+      ) {
+        const card =
+          document.createElement(
+            "div"
+          );
+
+        card.className =
+          "action-card";
+
+        card.innerHTML = `
+          <strong>${item.label}</strong>
+          <span>${item.description}</span>
+        `;
+
+        actionsBox.appendChild(
+          card
+        );
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          item.label;
+
+        option.textContent =
+          `${item.label} — ${item.description}`;
+
+        expectedAction.appendChild(
+          option
+        );
+      }
+    }
+
+
+    let currentVideoUrl = null;
+
+
+    videoFile.addEventListener(
+      "change",
+      () => {
+
+        const file =
+          videoFile.files[0];
+
+        if (!file) {
+          inputBox.hidden = true;
+          return;
+        }
+
+        if (currentVideoUrl) {
+          URL.revokeObjectURL(
+            currentVideoUrl
+          );
+        }
+
+        currentVideoUrl =
+          URL.createObjectURL(
+            file
+          );
+
+        inputVideo.src =
+          currentVideoUrl;
+
+        inputBox.hidden =
+          false;
+
+        resultSection.hidden =
+          true;
+
+        status.textContent =
+          "영상을 확인한 뒤 실제 수행한 Action을 선택하세요.";
+      }
+    );
+
+
+    form.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+        const file =
+          videoFile.files[0];
+
+        if (!file) {
+          status.textContent =
+            "MP4 파일을 먼저 선택하세요.";
+          return;
+        }
+
+        const data =
+          new FormData();
+
+        data.append(
+          "expected_action",
+          expectedAction.value
+        );
+
+        data.append(
+          "file",
+          file
+        );
+
+        button.disabled =
+          true;
+
+        resultSection.hidden =
+          true;
+
+        status.textContent =
+          "영상 분석 중입니다. Pose와 Action Recognition을 실행하고 있습니다...";
+
+        try {
+
+          const response =
+            await fetch(
+              "/api/analyze",
+              {
+                method: "POST",
+                body: data,
+              }
+            );
+
+          const result =
+            await response.json();
+
+          if (!response.ok) {
+            throw new Error(
+              result.detail
+              || "분석에 실패했습니다."
+            );
+          }
+
+          document.getElementById(
+            "resultPreview"
+          ).src =
+            result.preview_url
+            + "?t="
+            + Date.now();
+
+          document.getElementById(
+            "expectedValue"
+          ).textContent =
+            result.expected_action;
+
+          document.getElementById(
+            "expectedDescription"
+          ).textContent =
+            result.expected_action_description;
+
+          document.getElementById(
+            "detectedValue"
+          ).textContent =
+            result.detected_action;
+
+          document.getElementById(
+            "detectedDescription"
+          ).textContent =
+            result.detected_action_description
+            || "";
+
+          document.getElementById(
+            "confidenceValue"
+          ).textContent =
+            percent(
+              result.latest_confidence
+            );
+
+          let matchText =
+            "판정 불가";
+
+          if (
+            result.final_match
+            === true
+          ) {
+            matchText =
+              "일치";
+          }
+
+          if (
+            result.final_match
+            === false
+          ) {
+            matchText =
+              "불일치";
+          }
+
+          document.getElementById(
+            "matchValue"
+          ).textContent =
+            matchText;
+
+          document.getElementById(
+            "updatesValue"
+          ).textContent =
+            result.metrics
+              .prediction_updates;
+
+          document.getElementById(
+            "unknownValue"
+          ).textContent =
+            percent(
+              result.metrics
+                .unknown_ratio
+            );
+
+          document.getElementById(
+            "stableMatchValue"
+          ).textContent =
+            percent(
+              result.metrics
+                .stable_match_ratio
+            );
+
+          resultSection.hidden =
+            false;
+
+          status.textContent =
+            "분석이 완료되었습니다.";
+
+        }
+
+        catch (error) {
+
+          status.textContent =
+            "오류: "
+            + error.message;
+
+        }
+
+        finally {
+
+          button.disabled =
+            false;
+
+        }
+      }
+    );
+
+
+    loadActions().catch(
+      (error) => {
+        status.textContent =
+          "오류: "
+          + error.message;
+      }
+    );
+
+  </script>
+
+</body>
+</html>

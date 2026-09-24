@@ -1,0 +1,6 @@
+﻿run,expected_label,window_seconds,confidence_threshold,stabilization_buffer,stabilization_min_votes,prediction_updates,unknown_ratio,raw_label_changes,stable_label_changes,stable_match_ratio,mean_confidence,mean_processing_fps
+S02_A003_T01_w5_c0.55_s3,walk_turn_walk,5.0,0.55,3,2,21,1.0,5,0,0.0,0.2305,91.886
+S02_A003_T01_w5_c0.55_s5,walk_turn_walk,5.0,0.55,5,3,21,1.0,5,0,0.0,0.2305,91.548
+S02_A003_T01_w5_c0.55_s7,walk_turn_walk,5.0,0.55,7,4,21,1.0,5,0,0.0,0.2305,93.612
+S02_A006_T01_w2_c0.55_s5,wave,2.0,0.55,5,3,8,1.0,2,0,0.0,0.26,89.937
+S02_A006_T01_w3_c0.55_s5,wave,3.0,0.55,5,3,5,1.0,2,0,0.0,0.2487,98.815

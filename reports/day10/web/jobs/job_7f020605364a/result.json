@@ -1,0 +1,26 @@
+{
+  "job_id": "job_7f020605364a",
+  "created_at": "2026-09-24T16:26:00+09:00",
+  "source_file": "job_7f020605364a.mp4",
+  "expected_action": "leg_raise_lower",
+  "expected_action_description": "한쪽 다리를 들었다 내린다",
+  "detected_action": "UNKNOWN",
+  "detected_action_description": "",
+  "latest_confidence": 0.37,
+  "final_match": false,
+  "metrics": {
+    "prediction_updates": 1,
+    "unknown_ratio": 0.0,
+    "stable_match_ratio": 0.0,
+    "mean_confidence": 0.37,
+    "mean_processing_fps": 89.6
+  },
+  "runtime": {
+    "window_seconds": 3.0,
+    "confidence_threshold": 0.2,
+    "stabilization_buffer": 5
+  },
+  "runtime_csv": "reports/day10/web/runtime/job_7f020605364a_w3_c0.2_s5.csv",
+  "processed_video": "reports/day10/web/runtime/job_7f020605364a_w3_c0.2_s5.mp4",
+  "preview_image": "reports/day10/web/jobs/job_7f020605364a/preview.jpg"
+}

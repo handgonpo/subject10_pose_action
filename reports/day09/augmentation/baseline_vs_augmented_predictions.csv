@@ -1,0 +1,7 @@
+﻿clip_id,subject,action_id,action_label,baseline_pred,augmented_pred,baseline_correct,augmented_correct
+S02_A001_T01,S02,A001,bend_return,bend_return,bend_return,True,True
+S02_A002_T01,S02,A002,leg_raise_lower,leg_raise_lower,leg_raise_lower,True,True
+S02_A003_T01,S02,A003,walk_turn_walk,leg_raise_lower,walk_turn_walk,False,True
+S02_A004_T01,S02,A004,drink_return,wave,drink_return,False,True
+S02_A005_T01,S02,A005,sit_stand,sit_stand,sit_stand,True,True
+S02_A006_T01,S02,A006,wave,wave,drink_return,True,False

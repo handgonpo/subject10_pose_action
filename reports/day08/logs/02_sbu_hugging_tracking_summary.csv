@@ -1,0 +1,2 @@
+﻿scenario,total_frames,unique_track_ids,track_ids,tracked_frame_ratio,two_id_frame_ratio,max_ids_in_frame,extra_id_count
+02_sbu_hugging,33,4,1|2|4|5,1.0,0.6364,3,2

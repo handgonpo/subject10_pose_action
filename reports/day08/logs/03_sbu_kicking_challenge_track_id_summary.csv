@@ -1,0 +1,3 @@
+﻿track_id,first_frame,last_frame,detected_frames,mean_box_conf,mean_keypoint_conf
+1,0,17,18,0.9305611111111111,0.7776888888888889
+2,0,17,18,0.9345222222222223,0.7389277777777777

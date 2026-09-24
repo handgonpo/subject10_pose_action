@@ -1,0 +1,2 @@
+﻿run,expected_label,window_seconds,confidence_threshold,stabilization_buffer,stabilization_min_votes,prediction_updates,unknown_ratio,raw_label_changes,stable_label_changes,stable_match_ratio,mean_confidence,mean_processing_fps
+S03_A006_T01_w3_c0.2_s5,wave,3.0,0.2,5,3,6,0.0,0,1,0.6667,0.3489,87.389
